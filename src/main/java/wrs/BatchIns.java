@@ -97,24 +97,24 @@ public class BatchIns {
 
         }
 
-        BufferedWriter bw = new BufferedWriter(new FileWriter(outputPath + "/global_count.out"));
+        BufferedWriter bw = new BufferedWriter(new FileWriter("output_ins/" + outputPath + "_global_count.out", true));
 
         bw.write(String.valueOf(wrs.getGlobalTriangle()));
         bw.newLine();
         bw.close();
 
-        bw = new BufferedWriter(new FileWriter(outputPath + "/local_counts.out"));
+        /*bw = new BufferedWriter(new FileWriter(outputPath + "/local_counts.out"));
 
         Map<Integer, Double> localCounts = wrs.getLocalTriangle();
         for(int node : localCounts.keySet()) {
             bw.write(node+"\t"+localCounts.get(node));
             bw.newLine();
         }
-        bw.close();
+        bw.close();*/
     }
 
     private static int[] parseEdge(String line, String delim) {
-        String[] tokens = line.split(delim);
+        String[] tokens = line.split("\\t+");
         int src = Integer.valueOf(tokens[0]);
         int dst = Integer.valueOf(tokens[1]);
 
