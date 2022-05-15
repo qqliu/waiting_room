@@ -4,7 +4,7 @@ import numpy as np
 import math
 
 directories_loc = sys.argv[1]
-directories = ["wr"] #"as-733/", "caida/2004/", "caida/2005/", "caida/2006/", "caida/2007/", "temporal_graphs/", "oregon/2/", "oregon/3/"]
+directories = ["as-733/"] #"caida/2004/", "caida/2005/", "caida/2006/", "caida/2007/", "temporal_graphs/", "oregon/2/", "oregon/3/"]
 write_directory = sys.argv[2]
 
 for directory in directories:
@@ -15,7 +15,7 @@ for directory in directories:
     for filename in os.listdir(directory):
         for space_frac in np.arange(0.01, 0.3005, 0.01):
             f = os.path.join(directory, filename)
-            if os.path.isfile(f):
+            if os.path.isfile(f) and ".txt" not in f:
                 print("Processing", f)
                 data_file = open(f, "r")
                 lines = data_file.readlines()
