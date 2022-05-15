@@ -38,13 +38,13 @@ public class BatchIns {
         }
 
         final String inputPath = args[0];
-        System.out.println("input_path: " + inputPath);
+        //System.out.println("input_path: " + inputPath);
         final String outputPath = args[1];
-        System.out.println("output_path: " + outputPath);
+        //System.out.println("output_path: " + outputPath);
         final int maxSampleNum = Integer.valueOf(args[2]);
-        System.out.println("k: " + maxSampleNum);
+        //System.out.println("k: " + maxSampleNum);
         final double alpha = Double.valueOf(args[3]);
-        System.out.println("alpha: " + alpha);
+        //System.out.println("alpha: " + alpha);
 
         WRSIns wrs = new WRSIns(maxSampleNum, alpha, new Random().nextInt());
 
@@ -63,7 +63,7 @@ public class BatchIns {
 
         int count = 0;
 
-        System.out.println("start running WRS_INS...");
+        //System.out.println("start running WRS_INS...");
 
 
         while(true) {
@@ -76,18 +76,20 @@ public class BatchIns {
             wrs.processEdge(edge[0], edge[1]);
 
             if((++count) % 10000 == 0) {
-                System.out.println("Number of edges processed: " + count +", estimated number of global triangles: " + wrs.getGlobalTriangle());
+                //System.out.println("Number of edges processed: " + count +", estimated number of global triangles: " +
+                wrs.getGlobalTriangle();
             }
         }
 
-        System.out.println("WRS_INS terminated ...");
-        System.out.println("Estimated number of global triangles: " + wrs.getGlobalTriangle());
+        //System.out.println("WRS_INS terminated ...");
+        //System.out.println("Estimated number of global triangles: " +
+        wrs.getGlobalTriangle();
 
         br.close();
     }
 
     private static void output(WRSIns wrs, String outputPath) throws IOException {
-        System.out.println("writing outputs...\n\n");
+        //System.out.println("writing outputs...\n\n");
 
         File dir = new File(outputPath);
         try{
@@ -97,7 +99,7 @@ public class BatchIns {
 
         }
 
-        BufferedWriter bw = new BufferedWriter(new FileWriter("output_ins/" + outputPath + "_global_count.out", true));
+        BufferedWriter bw = new BufferedWriter(new FileWriter(outputPath, true));
 
         bw.write(String.valueOf(wrs.getGlobalTriangle()));
         bw.newLine();
