@@ -4,7 +4,7 @@ import numpy as np
 import math
 
 directories_loc = sys.argv[1]
-directories = ["as-733/"] #"caida/2004/", "caida/2005/", "caida/2006/", "caida/2007/", "temporal_graphs/", "oregon/2/", "oregon/3/"]
+directories = ["caida/2004/", "caida/2005/", "caida/2006/", "caida/2007/", "oregon/2/", "oregon/3/"]
 write_directory = sys.argv[2]
 
 for directory in directories:
@@ -21,12 +21,12 @@ for directory in directories:
                 lines = data_file.readlines()
                 space = math.ceil(space_frac * len(lines))
 
-                write_file_name = write_directory + filename + "_" + str(space)
+                write_file_name = write_directory + f + "_" + str(space)
                 if not os.path.isfile(write_file_name):
                     open(write_file_name, 'a').close()
 
                 data_file.close()
                 command = "./run_ins.sh " + f + " " + write_file_name + " " + str(2 * space) + " 0.5"
                 print(command)
-                for i in range(50):
+                for i in range(10):
                     os.system(command)
